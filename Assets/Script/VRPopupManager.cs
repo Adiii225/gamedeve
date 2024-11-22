@@ -1,62 +1,53 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class VRPopupManager : MonoBehaviour
 {
-    public GameObject wingPanel, enginePanel, enginePanel2, cockpitPanel, frontTirePanel, backWingsPanel; // Assign panels in Inspector
-    private GameObject activePanel = null; // Track which panel is currently active
-    private float lastClickTime = 0f;
-    private const float doubleClickThreshold = 0.3f;
+    public GameObject popupPanel; // The panel to display when the ray touches the object
 
-    // Show the popup based on the part name
-    public void ShowPopup(string partName)
+    private void OnEnable()
     {
-        HideActivePopup(); // Hide any currently active popup first
-
-        switch (partName)
+        // Register for the XR Interaction events when the script is enabled
+        var interactor = GetComponent<XRBaseInteractor>();
+        if (interactor != null)
         {
-            case "Wing":
-                activePanel = wingPanel;
-                break;
-            case "Engine":
-                activePanel = enginePanel;
-                break;
-            case "Engine2": // Or "Engine2", if that's the naming convention
-                activePanel = enginePanel2;
-                break;
-            case "Cockpit":
-                activePanel = cockpitPanel;
-                break;
-            case "Front_Tire":
-                activePanel = frontTirePanel;
-                break;
-            case "Back_Wings":
-                activePanel = backWingsPanel;
-                break;
-        }
-
-        if (activePanel != null)
-        {
-            activePanel.SetActive(true); // Show the appropriate popup
+            interactor.selectEntered.AddListener(OnRayEnter);
+            interactor.selectExited.AddListener(OnRayExit);
         }
     }
 
-    // Hide currently active popup on double-click
-    public void HandleDoubleClick()
+    private void OnDisable()
     {
-        if (Time.time - lastClickTime < doubleClickThreshold)
+        // Unregister the events to prevent memory leaks
+        var interactor = GetComponent<XRBaseInteractor>();
+        if (interactor != null)
         {
-            HideActivePopup();
+            interactor.selectEntered.RemoveListener(OnRayEnter);
+            interactor.selectExited.RemoveListener(OnRayExit);
         }
-        lastClickTime = Time.time;
     }
 
-    private void HideActivePopup()
+    private void OnRayEnter(SelectEnterEventArgs args)
     {
-        if (activePanel != null)
+        // Called when the ray touches the object
+        Debug.Log($"{gameObject.name} touched by ray!");
+
+        // Hide the sphere (this object)
+        gameObject.SetActive(false);
+
+        // Show the corresponding popup panel
+        if (popupPanel != null)
         {
-            activePanel.SetActive(false);
-            activePanel = null;
+            popupPanel.SetActive(true);
+        }
+    }
+
+    private void OnRayExit(SelectExitEventArgs args)
+    {
+        // Optionally hide the popup when the ray exits the object
+        if (popupPanel != null)
+        {
+            popupPanel.SetActive(false);
         }
     }
 }

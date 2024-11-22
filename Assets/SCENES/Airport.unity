@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.10881667, g: 0.26858193, b: 0.42467266, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -284,6 +285,7 @@ GameObject:
   - component: {fileID: 157674799}
   - component: {fileID: 157674798}
   - component: {fileID: 157674797}
+  - component: {fileID: 157674801}
   - component: {fileID: 157674800}
   m_Layer: 0
   m_Name: Wing
@@ -380,7 +382,34 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157674795}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &157674800
+--- !u!54 &157674800
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157674795}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &157674801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,10 +418,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 157674795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6585b0d3ecaba4c3ebbbcd818ab9a72b, type: 3}
+  m_Script: {fileID: 11500000, guid: 64cc3cc661c724e3ab2e380b2db3d984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partName: Wing
+  popupPanel: {fileID: 1732645415}
 --- !u!1 &159546565
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +566,8 @@ MonoBehaviour:
   cockpitPanel: {fileID: 1053423292}
   frontTirePanel: {fileID: 758508373}
   backWingsPanel: {fileID: 104638745}
+  activePanel: {fileID: 0}
+  lastClickTime: 0
 --- !u!1 &334168636
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +584,7 @@ GameObject:
   - component: {fileID: 334168638}
   m_Layer: 0
   m_Name: Left Controller
-  m_TagString: Untagged
+  m_TagString: XRRayInteractor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -731,8 +762,6 @@ MonoBehaviour:
   m_StopLineAtSelection: 0
   m_SnapEndpointIfAvailable: 1
   m_LineBendRatio: 0.5
-  m_BendingEnabledInteractionLayers:
-    m_Bits: 4294967295
   m_OverrideInteractorLineOrigin: 1
   m_LineOriginTransform: {fileID: 0}
   m_LineOriginOffset: 0
@@ -1509,6 +1538,7 @@ GameObject:
   - component: {fileID: 428020373}
   - component: {fileID: 428020372}
   - component: {fileID: 428020371}
+  - component: {fileID: 428020375}
   - component: {fileID: 428020374}
   m_Layer: 0
   m_Name: Engine
@@ -1614,10 +1644,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 428020369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6585b0d3ecaba4c3ebbbcd818ab9a72b, type: 3}
+  m_Script: {fileID: 11500000, guid: 64cc3cc661c724e3ab2e380b2db3d984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partName: Engine
+  popupPanel: {fileID: 105944711}
+--- !u!54 &428020375
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428020369}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &587405825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,6 +1890,8 @@ GameObject:
   - component: {fileID: 618399824}
   - component: {fileID: 618399823}
   - component: {fileID: 618399826}
+  - component: {fileID: 618399828}
+  - component: {fileID: 618399827}
   m_Layer: 0
   m_Name: Cockpit
   m_TagString: Untagged
@@ -1941,6 +2000,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partName: Cockpit
+  popupManager: {fileID: 0}
+--- !u!114 &618399827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618399821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64cc3cc661c724e3ab2e380b2db3d984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupPanel: {fileID: 1053423292}
+--- !u!54 &618399828
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618399821}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &637461879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,7 +2057,7 @@ GameObject:
   - component: {fileID: 637461881}
   m_Layer: 0
   m_Name: Right Controller
-  m_TagString: Untagged
+  m_TagString: XRRayInteractor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2135,8 +2235,6 @@ MonoBehaviour:
   m_StopLineAtSelection: 0
   m_SnapEndpointIfAvailable: 1
   m_LineBendRatio: 0.5
-  m_BendingEnabledInteractionLayers:
-    m_Bits: 4294967295
   m_OverrideInteractorLineOrigin: 1
   m_LineOriginTransform: {fileID: 0}
   m_LineOriginOffset: 0
@@ -3088,6 +3186,8 @@ GameObject:
   - component: {fileID: 1044543041}
   - component: {fileID: 1044543040}
   - component: {fileID: 1044543043}
+  - component: {fileID: 1044543045}
+  - component: {fileID: 1044543044}
   m_Layer: 0
   m_Name: Back_Wings
   m_TagString: Untagged
@@ -3196,6 +3296,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partName: Back_Wings
+  popupManager: {fileID: 0}
+--- !u!114 &1044543044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044543038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64cc3cc661c724e3ab2e380b2db3d984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupPanel: {fileID: 104638745}
+--- !u!54 &1044543045
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044543038}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1047743068
 GameObject:
   m_ObjectHideFlags: 0
@@ -3589,6 +3730,8 @@ GameObject:
   - component: {fileID: 1193795429}
   - component: {fileID: 1193795428}
   - component: {fileID: 1193795431}
+  - component: {fileID: 1193795433}
+  - component: {fileID: 1193795432}
   m_Layer: 0
   m_Name: Engine2
   m_TagString: Untagged
@@ -3697,6 +3840,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partName: Engine2
+  popupManager: {fileID: 0}
+--- !u!114 &1193795432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193795426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64cc3cc661c724e3ab2e380b2db3d984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupPanel: {fileID: 1707581255}
+--- !u!54 &1193795433
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193795426}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1203908404
 GameObject:
   m_ObjectHideFlags: 0
@@ -4166,6 +4350,8 @@ GameObject:
   - component: {fileID: 1601127318}
   - component: {fileID: 1601127317}
   - component: {fileID: 1601127320}
+  - component: {fileID: 1601127322}
+  - component: {fileID: 1601127321}
   m_Layer: 0
   m_Name: Front_Tire
   m_TagString: Untagged
@@ -4274,6 +4460,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partName: Front_Tire
+  popupManager: {fileID: 0}
+--- !u!114 &1601127321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601127315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64cc3cc661c724e3ab2e380b2db3d984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupPanel: {fileID: 758508373}
+--- !u!54 &1601127322
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601127315}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1604610332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4603,7 +4830,6 @@ Terrain:
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
-  m_HeightmapMinimumLODSimplification: 0
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
