@@ -1959,7 +1959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e6d7cece7a54406828fb6136c95a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayTime: 140
+  delayTime: 200
   nextSceneName: End
 --- !u!4 &516163945
 Transform:
